@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/android-crypto-kit.iml" filepath="$PROJECT_DIR$/.idea/android-crypto-kit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-cipher.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-cipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-cipher_main.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-cipher_main.iml" group="crypto-cipher" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-cipher_test.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-cipher_test.iml" group="crypto-cipher" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-ecdsa.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-ecdsa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-ecdsa_main.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-ecdsa_main.iml" group="crypto-ecdsa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-ecdsa_test.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-ecdsa_test.iml" group="crypto-ecdsa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-kdf.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-kdf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-kdf_main.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-kdf_main.iml" group="crypto-kdf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crypto-kdf_test.iml" filepath="$PROJECT_DIR$/.idea/modules/crypto-kdf_test.iml" group="crypto-kdf" />
+    </modules>
+  </component>
+</project>
