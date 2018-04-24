@@ -1,3 +1,6 @@
+# Deployment credentials
+repoCredentials.gradle
+
 .jar
 
 # Build output directies
