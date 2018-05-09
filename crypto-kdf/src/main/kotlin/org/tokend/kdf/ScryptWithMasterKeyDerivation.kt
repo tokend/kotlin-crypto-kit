@@ -39,12 +39,16 @@ class ScryptWithMasterKeyDerivation: ScryptKeyDerivation {
         composedRawSalt[0] = encryptionVersion
         System.arraycopy(salt, 0, composedRawSalt, 1, salt.size)
         System.arraycopy(login, 0, composedRawSalt, 1 + salt.size, login.size)
+
         val composedSalt = MessageDigest.getInstance(COMPOSED_SALT_HASH_ALG).digest(composedRawSalt)
+        composedRawSalt.fill(0)
 
         val key = SCrypt.generate(passphrase, composedSalt, n, r, p, keyLengthBytes)
+        composedSalt.fill(0)
 
         val hmacSha256 = Mac.getInstance(MASTER_KEY_MAC_ALG)
         hmacSha256.init(SecretKeySpec(key, MASTER_KEY_MAC_ALG))
+        key.fill(0)
 
         return hmacSha256.doFinal(masterKey)
     }
