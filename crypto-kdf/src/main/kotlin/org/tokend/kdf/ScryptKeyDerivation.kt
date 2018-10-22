@@ -4,6 +4,8 @@ import org.spongycastle.crypto.generators.SCrypt
 
 /**
  * Implements a classic scrypt KDF.
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Scrypt">Scrypt in Wikipedia</a>
  */
 open class ScryptKeyDerivation : KeyDerivationFunction {
     protected val n: Int
