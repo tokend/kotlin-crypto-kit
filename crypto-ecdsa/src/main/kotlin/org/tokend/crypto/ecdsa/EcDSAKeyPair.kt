@@ -21,32 +21,34 @@ class EcDSAKeyPair private constructor(
             EdDSAEngine(MessageDigest.getInstance(curveSpec.hashAlgorithm))
 
     /**
-     * Returns raw public key bytes
+     * @return raw public key bytes
      */
     val publicKeyBytes: ByteArray
         get() = publicKey.abyte
 
     /**
-     * Returns raw private key bytes if keypair has it
+     * @return raw private key bytes if keypair has it
      */
     val privateKeyBytes: ByteArray?
         get() = privateKey?.geta()
 
     /**
-     * Returns private key seed if keypair has it
+     * @return private key seed if keypair has it
      */
     val privateKeySeed: ByteArray?
         get() = privateKey?.seed
 
     /**
-     * Returns true if keypair can be used for signing i.e. it has a private key, false otherwise
+     * @return [true] if keypair can be used for signing i.e. it has a private key, false otherwise
      */
     val canSign: Boolean
         get() = privateKey != null
 
     /**
      * Signs given data with private key if keypair has it
+     *
      * @throws SignUnavailableException if keypair can't be used for signing
+     *
      * @see [EcDSAKeyPair.canSign]
      */
     fun sign(data: ByteArray): ByteArray {
@@ -63,7 +65,8 @@ class EcDSAKeyPair private constructor(
 
     /**
      * Verifies signature for provided data with public key
-     * @return true if the signature is valid, false otherwise
+     *
+     * @return [true] if the signature is valid, [false] otherwise
      */
     fun verify(data: ByteArray, signature: ByteArray): Boolean {
         return try {
