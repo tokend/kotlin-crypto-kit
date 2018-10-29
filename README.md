@@ -53,8 +53,7 @@ Usage example:
 ```kotlin
 val CURVE = Curves.ED25519_SHA512
 val DATA = "TokenD is awesome".toByteArray()
-val keyPair = EcDSA
-KeyPair.random(CURVE)
+val keyPair = EcDSAKeyPair.random(CURVE)
 val signature = keyPair.sign(DATA)
 keyPair.verify(DATA, signature)
 ```
