@@ -9,9 +9,6 @@ buildscript {
     }
 }
 
-group 'org.tokend'
-version '1.0.2'
-
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
@@ -41,3 +38,8 @@ compileTestKotlin {
 }
 
 apply from: "../deploy.gradle"
+
+group 'org.tokend'
+version '1.0.2'
+uploadArchives.repositories.mavenDeployer.pom.artifactId = 'crypto-ecdsa'
+uploadArchives.repositories.mavenDeployer.pom.name = 'TokenD crypto / EcDSA'
