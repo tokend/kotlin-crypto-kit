@@ -18,7 +18,7 @@ allprojects {
 
 dependencies {
     ...
-    compile "org.tokend:crypto-cipher:1.0"
+    compile "org.tokend:crypto-cipher:1.0.1"
 }
 ```
 Usage example:
@@ -46,7 +46,7 @@ allprojects {
 
 dependencies {
     ...
-    compile "org.tokend:crypto-ecdsa:1.0.1"
+    compile "org.tokend:crypto-ecdsa:1.0.3"
 }
 ```
 Usage example:
@@ -74,7 +74,7 @@ allprojects {
 
 dependencies {
     ...
-    compile "org.tokend:crypto-kdf:1.0.2"
+    compile "org.tokend:crypto-kdf:1.0.3"
 }
 ```
 Usage example:

@@ -9,6 +9,7 @@ import net.i2p.crypto.eddsa.spec.EdDSANamedCurveTable
 import net.i2p.crypto.eddsa.spec.EdDSAPrivateKeySpec
 import net.i2p.crypto.eddsa.spec.EdDSAPublicKeySpec
 import java.security.*
+import javax.security.auth.Destroyable
 
 /**
  * Holds private and/or public keys defined on elliptic curve.
@@ -16,7 +17,8 @@ import java.security.*
 class EcDSAKeyPair private constructor(
         private val curveSpec: EdDSANamedCurveSpec,
         private val publicKey: EdDSAPublicKey,
-        private val privateKey: EdDSAPrivateKey? = null) {
+        private var privateKey: EdDSAPrivateKey? = null
+) : Destroyable {
     private fun getSignatureEngine(): Signature =
             EdDSAEngine(MessageDigest.getInstance(curveSpec.hashAlgorithm))
 
@@ -50,6 +52,7 @@ class EcDSAKeyPair private constructor(
      * @throws SignUnavailableException if keypair can't be used for signing
      *
      * @see [EcDSAKeyPair.canSign]
+     * @see [EcDSAKeyPair.isDestroyed]
      */
     fun sign(data: ByteArray): ByteArray {
         if (!canSign) {
@@ -81,6 +84,26 @@ class EcDSAKeyPair private constructor(
         }
     }
 
+    /**
+     * Destroys keypair's private key by filling it content with zeros
+     */
+    override fun destroy() {
+        privateKey?.h?.erase()
+        privateKey?.abyte?.erase()
+        privateKey?.geta()?.erase()
+        privateKey?.seed?.erase()
+        privateKey = null
+    }
+
+    /**
+     * @return [true] if keypair private key is destroyed
+     *
+     * @see [EcDSAKeyPair.destroy]
+     */
+    override fun isDestroyed(): Boolean {
+        return privateKey == null
+    }
+
     companion object {
         private fun getCurveSpecByName(curveName: String): EdDSANamedCurveSpec {
             return EdDSANamedCurveTable.getByName(curveName) ?: throw NoCurveFoundException()
@@ -105,12 +128,13 @@ class EcDSAKeyPair private constructor(
 
         /**
          * Creates keypair from given 32 byte seed for given curve.
+         * Original seed will be duplicated.
          */
         @JvmStatic
         fun fromPrivateKeySeed(curveName: String, seed: ByteArray): EcDSAKeyPair {
             val curveSpec = getCurveSpecByName(curveName)
 
-            val privateKeySpec = EdDSAPrivateKeySpec(seed, curveSpec)
+            val privateKeySpec = EdDSAPrivateKeySpec(seed.copyOf(), curveSpec)
             val publicKeySpec = EdDSAPublicKeySpec(privateKeySpec.a.toByteArray(), curveSpec)
 
             return EcDSAKeyPair(curveSpec, EdDSAPublicKey(publicKeySpec), EdDSAPrivateKey(privateKeySpec))
