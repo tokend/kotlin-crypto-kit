@@ -46,7 +46,7 @@ allprojects {
 
 dependencies {
     ...
-    compile "org.tokend:crypto-ecdsa:1.0.2"
+    compile "org.tokend:crypto-ecdsa:1.0.3"
 }
 ```
 Usage example:
