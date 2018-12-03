@@ -56,4 +56,29 @@ class EcDSAKeyPairTest {
         val keyPair = EcDSAKeyPair.fromPrivateKeySeed(CURVE, PRIVATE_KEY_SEED)
         Assert.assertFalse(keyPair.verify(ByteArray(0), ByteArray(0)))
     }
+
+    @Test
+    fun destroy() {
+        val seedCopy = PRIVATE_KEY_SEED.copyOf()
+        val keyPair = EcDSAKeyPair.fromPrivateKeySeed(CURVE, PRIVATE_KEY_SEED)
+        keyPair.destroy()
+
+        Assert.assertArrayEquals("KeyPair has destroyed the original seed",
+                seedCopy, PRIVATE_KEY_SEED)
+        Assert.assertNull(keyPair.privateKeyBytes)
+        Assert.assertNull(keyPair.privateKeySeed)
+    }
+
+    @Test
+    fun isDestroyedTrue() {
+        val keyPair = EcDSAKeyPair.fromPrivateKeySeed(CURVE, PRIVATE_KEY_SEED)
+        keyPair.destroy()
+        Assert.assertTrue(keyPair.isDestroyed)
+    }
+
+    @Test
+    fun isDestroyedFalse() {
+        val keyPair = EcDSAKeyPair.fromPrivateKeySeed(CURVE, PRIVATE_KEY_SEED)
+        Assert.assertFalse(keyPair.isDestroyed)
+    }
 }
