@@ -88,10 +88,10 @@ class EcDSAKeyPair private constructor(
      * Destroys keypair's private key by filling it content with zeros
      */
     override fun destroy() {
-        privateKey?.h?.fill(0)
-        privateKey?.abyte?.fill(0)
-        privateKey?.geta()?.fill(0)
-        privateKey?.seed?.fill(0)
+        privateKey?.h?.erase()
+        privateKey?.abyte?.erase()
+        privateKey?.geta()?.erase()
+        privateKey?.seed?.erase()
         privateKey = null
     }
 
