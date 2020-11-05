@@ -12,7 +12,7 @@ Based on [Spongy Castle](https://rtyley.github.io/spongycastle/).
 allprojects {
     repositories {
         ...
-        maven { url "https://maven.tokend.org" }
+        maven { url "https://maven.tokend.io" }
     }
 }
 
@@ -40,7 +40,7 @@ Based on [EdDSA-Java](https://github.com/str4d/ed25519-java).
 allprojects {
     repositories {
         ...
-        maven { url "https://maven.tokend.org" }
+        maven { url "https://maven.tokend.io" }
     }
 }
 
@@ -68,7 +68,7 @@ Based on [Spongy Castle](https://rtyley.github.io/spongycastle/).
 allprojects {
     repositories {
         ...
-        maven { url "https://maven.tokend.org" }
+        maven { url "https://maven.tokend.io" }
     }
 }
 
